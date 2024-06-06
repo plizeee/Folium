@@ -3,6 +3,7 @@
 //  Limon
 //
 //  Created by Jarrod Norwell on 10/9/23.
+//  Edited by Pliz
 //
 
 import Foundation
@@ -59,26 +60,30 @@ class VirtualControllerView : UIView {
             addConstraints(landscapeConstraints[2])
             addConstraints(landscapeConstraints[3])
         }
+
+        let defaultColors: (UIColor, UIColor) = (.systemGray, .systemGray)
         
         switch core {
         case .cytrus:
-            addDpadUp(false, buttonColors: core.buttonColors[.dpadUp] ?? (.black, .white))
-            addDpadLeft(false, buttonColors: core.buttonColors[.dpadLeft] ?? (.black, .white))
-            addDpadDown(false, buttonColors: core.buttonColors[.dpadDown] ?? (.black, .white))
-            addDpadRight(false, buttonColors: core.buttonColors[.dpadRight] ?? (.black, .white))
+
+
+            addDpadUp(false, buttonColors: defaultColors)
+            addDpadLeft(false, buttonColors: defaultColors)
+            addDpadDown(false, buttonColors: defaultColors)
+            addDpadRight(false, buttonColors: defaultColors)
             
-            addA(false, buttonColors: core.buttonColors[.a] ?? (.black, .white))
-            addB(false, buttonColors: core.buttonColors[.b] ?? (.black, .white))
-            addX(false, buttonColors: core.buttonColors[.x] ?? (.black, .white))
-            addY(false, buttonColors: core.buttonColors[.y] ?? (.black, .white))
+            addA(false, buttonColors: defaultColors)
+            addB(false, buttonColors: defaultColors)
+            addX(false, buttonColors: defaultColors)
+            addY(false, buttonColors: defaultColors)
             
-            addMinus(false, buttonColors: core.buttonColors[.minus] ?? (.black, .white))
-            addPlus(false, buttonColors: core.buttonColors[.plus] ?? (.black, .white))
+            addMinus(false, buttonColors: defaultColors)
+            addPlus(false, buttonColors: defaultColors)
             
-            addL(false, buttonColors: core.buttonColors[.l] ?? (.black, .white))
-            addR(false, buttonColors: core.buttonColors[.r] ?? (.black, .white))
-            addZL(false, buttonColors: core.buttonColors[.zl] ?? (.black, .white))
-            addZR(false, buttonColors: core.buttonColors[.zr] ?? (.black, .white))
+            addL(false, buttonColors: defaultColors)
+            addR(false, buttonColors: defaultColors)
+            addZL(false, buttonColors: defaultColors)
+            addZR(false, buttonColors: defaultColors)
         case .grape:
             addDpadUp(false, buttonColors: (.systemBackground, .label))
             addDpadLeft(false, buttonColors: (.systemBackground, .label))
@@ -101,8 +106,8 @@ class VirtualControllerView : UIView {
             addDpadDown(false, buttonColors: (.systemBackground, .label))
             addDpadRight(false, buttonColors: (.systemBackground, .label))
             
-            addA(false, buttonColors: core.buttonColors[.a] ?? (.systemRed, .white))
-            addB(false, buttonColors: core.buttonColors[.b] ?? (.systemRed, .white))
+            addA(false, buttonColors: core.buttonColors[.a] ?? (.systemRed, .systemGray))
+            addB(false, buttonColors: core.buttonColors[.b] ?? (.systemRed, .systemGray))
             
             addMinus(false, buttonColors: (.systemBackground, .label))
             addPlus(false, buttonColors: (.systemBackground, .label))
@@ -144,16 +149,18 @@ class VirtualControllerView : UIView {
             self.layoutIfNeeded()
         }
     }
-    
+
+    /*=============== ADD VIEWS ===============*/
+
     fileprivate func addDpadView() {
         dpadView = .init()
         dpadView.translatesAutoresizingMaskIntoConstraints = false
+        dpadView.isUserInteractionEnabled = true
         addSubview(dpadView)
-        
         let portraitWidthConstraint = if UIDevice.current.userInterfaceIdiom == .phone {
-            dpadView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor, constant: -50)
+            dpadView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor, constant: -20)
         } else {
-            dpadView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 1 / 5, constant: -50)
+            dpadView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 1 / 5, constant: -20)
         }
         
         portraitConstraints.append([
@@ -164,9 +171,9 @@ class VirtualControllerView : UIView {
         ])
         
         let landscapeHeightConstraint = if UIDevice.current.userInterfaceIdiom == .phone {
-            dpadView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor, constant: 50)
+            dpadView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor, constant: 20)
         } else {
-            dpadView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 1 / 5, constant: -50)
+            dpadView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 1 / 5, constant: -20)
         }
         
         landscapeConstraints.append([
@@ -175,17 +182,25 @@ class VirtualControllerView : UIView {
             dpadView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20),
             dpadView.widthAnchor.constraint(equalTo: dpadView.heightAnchor)
         ])
+        
+        
+        if UIApplication.shared.statusBarOrientation == .portrait {
+            addConstraints(portraitConstraints[0])
+        } else {
+            addConstraints(landscapeConstraints[0])
+        }
     }
     
     fileprivate func addXYBAView() {
         xybaView = .init()
         xybaView.translatesAutoresizingMaskIntoConstraints = false
+        xybaView.isUserInteractionEnabled = true
         addSubview(xybaView)
         
         let portraitWidthConstraint = if UIDevice.current.userInterfaceIdiom == .phone {
-            xybaView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor, constant: 50)
+            xybaView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor, constant: 20)
         } else {
-            xybaView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 1 / 5, constant: -50)
+            xybaView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 1 / 5, constant: -20)
         }
         
         portraitConstraints.append([
@@ -196,9 +211,9 @@ class VirtualControllerView : UIView {
         ])
         
         let landscapeHeightConstraint = if UIDevice.current.userInterfaceIdiom == .phone {
-            xybaView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor, constant: 50)
+            xybaView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor, constant: 20)
         } else {
-            xybaView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 1 / 5, constant: -50)
+            xybaView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 1 / 5, constant: -20)
         }
         
         landscapeConstraints.append([
@@ -207,6 +222,12 @@ class VirtualControllerView : UIView {
             xybaView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20),
             xybaView.widthAnchor.constraint(equalTo: xybaView.heightAnchor)
         ])
+        
+        if UIApplication.shared.statusBarOrientation == .portrait {
+            addConstraints(portraitConstraints[1])
+        } else {
+            addConstraints(landscapeConstraints[1])
+        }
     }
     
     fileprivate func addLThumbstickView() {
@@ -248,7 +269,10 @@ class VirtualControllerView : UIView {
             rightThumbstickView.trailingAnchor.constraint(equalTo: xybaView.trailingAnchor)
         ])
     }
-    
+
+
+    /*=============== ADD BUTTONS ===============*/
+
     fileprivate func addDpadUp(_ shouldHide: Bool, buttonColors: (UIColor, UIColor)) {
         dpadUpButton = .init(buttonColors: buttonColors, buttonType: .dpadUp, virtualButtonDelegate: virtualButtonDelegate, shouldHide: shouldHide)
         dpadView.addSubview(dpadUpButton)
@@ -352,8 +376,8 @@ class VirtualControllerView : UIView {
         addConstraints([
             minusButton.bottomAnchor.constraint(equalTo: dpadView.bottomAnchor),
             minusButton.trailingAnchor.constraint(equalTo: dpadView.trailingAnchor),
-            minusButton.widthAnchor.constraint(equalTo: dpadView.widthAnchor, multiplier: 1 / 4),
-            minusButton.heightAnchor.constraint(equalTo: dpadView.heightAnchor, multiplier: 1 / 4)
+            minusButton.widthAnchor.constraint(equalTo: dpadView.widthAnchor, multiplier: 1 / 5),
+            minusButton.heightAnchor.constraint(equalTo: dpadView.heightAnchor, multiplier: 1 / 5)
         ])
     }
     
@@ -364,59 +388,63 @@ class VirtualControllerView : UIView {
         addConstraints([
             plusButton.leadingAnchor.constraint(equalTo: xybaView.leadingAnchor),
             plusButton.bottomAnchor.constraint(equalTo: xybaView.bottomAnchor),
-            plusButton.widthAnchor.constraint(equalTo: xybaView.widthAnchor, multiplier: 1 / 4),
-            plusButton.heightAnchor.constraint(equalTo: xybaView.heightAnchor, multiplier: 1 / 4)
+            plusButton.widthAnchor.constraint(equalTo: xybaView.widthAnchor, multiplier: 1 / 5),
+            plusButton.heightAnchor.constraint(equalTo: xybaView.heightAnchor, multiplier: 1 / 5)
         ])
     }
-    
+
     fileprivate func addL(_ shouldHide: Bool, buttonColors: (UIColor, UIColor)) {
         lButton = .init(buttonColors: buttonColors, buttonType: .l, virtualButtonDelegate: virtualButtonDelegate, shouldHide: shouldHide)
         addSubview(lButton)
         
         addConstraints([
-            lButton.leadingAnchor.constraint(equalTo: dpadView.leadingAnchor),
-            lButton.bottomAnchor.constraint(equalTo: dpadView.topAnchor, constant: -20),
-            lButton.trailingAnchor.constraint(equalTo: dpadView.centerXAnchor, constant: -10),
-            lButton.heightAnchor.constraint(equalTo: dpadView.heightAnchor, multiplier: 1 / 3)
+            lButton.leadingAnchor.constraint(equalTo: xybaView.leadingAnchor, constant: -10),
+            lButton.bottomAnchor.constraint(equalTo: xybaView.topAnchor, constant: 30), // Default -20 (higher means lower)
+            lButton.trailingAnchor.constraint(equalTo: xybaView.centerXAnchor, constant: -30), // Default -10 (higher means bigger scale)
+            lButton.heightAnchor.constraint(equalTo: lButton.widthAnchor, multiplier: 1 / 2) // Default 1 / 2
         ])
     }
-    
+
     fileprivate func addZL(_ shouldHide: Bool, buttonColors: (UIColor, UIColor)) {
         zlButton = .init(buttonColors: buttonColors, buttonType: .zl, virtualButtonDelegate: virtualButtonDelegate, shouldHide: shouldHide)
         addSubview(zlButton)
         
         addConstraints([
-            zlButton.leadingAnchor.constraint(equalTo: dpadView.centerXAnchor, constant: 10),
-            zlButton.bottomAnchor.constraint(equalTo: dpadView.topAnchor, constant: -20),
-            zlButton.trailingAnchor.constraint(equalTo: dpadView.trailingAnchor),
-            zlButton.heightAnchor.constraint(equalTo: dpadView.heightAnchor, multiplier: 1 / 3)
+            zlButton.leadingAnchor.constraint(equalTo: dpadView.leadingAnchor, constant: -10),
+            zlButton.bottomAnchor.constraint(equalTo: dpadView.topAnchor, constant: 30), // Default -20 (higher means lower)
+            zlButton.trailingAnchor.constraint(equalTo: dpadView.centerXAnchor, constant: -30), // Default -10 (higher means bigger scale)
+            zlButton.heightAnchor.constraint(equalTo: zlButton.widthAnchor, multiplier: 1 / 2) // Default 1 / 2
         ])
     }
-    
+        
+
     fileprivate func addR(_ shouldHide: Bool, buttonColors: (UIColor, UIColor)) {
         rButton = .init(buttonColors: buttonColors, buttonType: .r, virtualButtonDelegate: virtualButtonDelegate, shouldHide: shouldHide)
         addSubview(rButton)
         
         addConstraints([
-            rButton.leadingAnchor.constraint(equalTo: xybaView.centerXAnchor, constant: 10),
-            rButton.bottomAnchor.constraint(equalTo: xybaView.topAnchor, constant: -20),
-            rButton.trailingAnchor.constraint(equalTo: xybaView.trailingAnchor),
-            rButton.heightAnchor.constraint(equalTo: xybaView.heightAnchor, multiplier: 1 / 3)
+            rButton.leadingAnchor.constraint(equalTo: xybaView.centerXAnchor, constant: 30), // Default 10
+            rButton.bottomAnchor.constraint(equalTo: xybaView.topAnchor, constant: 30), // Default -20
+            rButton.trailingAnchor.constraint(equalTo: xybaView.trailingAnchor, constant: 10),
+            rButton.heightAnchor.constraint(equalTo: rButton.widthAnchor, multiplier: 1 / 2) // Default 1 / 2
         ])
     }
-    
+
     fileprivate func addZR(_ shouldHide: Bool, buttonColors: (UIColor, UIColor)) {
         zrButton = .init(buttonColors: buttonColors, buttonType: .zr, virtualButtonDelegate: virtualButtonDelegate, shouldHide: shouldHide)
         addSubview(zrButton)
         
         addConstraints([
-            zrButton.leadingAnchor.constraint(equalTo: xybaView.leadingAnchor),
-            zrButton.bottomAnchor.constraint(equalTo: xybaView.topAnchor, constant: -20),
-            zrButton.trailingAnchor.constraint(equalTo: xybaView.centerXAnchor, constant: -10),
-            zrButton.heightAnchor.constraint(equalTo: xybaView.heightAnchor, multiplier: 1 / 3)
+            zrButton.leadingAnchor.constraint(equalTo: dpadView.centerXAnchor, constant: 30), // Default 10
+            zrButton.bottomAnchor.constraint(equalTo: dpadView.topAnchor, constant: 30), // Default -20
+            zrButton.trailingAnchor.constraint(equalTo: dpadView.trailingAnchor, constant: 10),
+            zrButton.heightAnchor.constraint(equalTo: zrButton.widthAnchor, multiplier: 1 / 2) // Default 1 / 2
         ])
     }
     
+
+    /*=============== FADE/UNFADE ===============*/
+
     func fade() {
         UIView.animate(withDuration: 0.2) {
             self.dpadView.alpha = 0.33
@@ -434,15 +462,15 @@ class VirtualControllerView : UIView {
     
     func unfade() {
         UIView.animate(withDuration: 0.2) {
-            self.dpadView.alpha = 1
-            self.xybaView.alpha = 1
+            self.dpadView.alpha = 0.5
+            self.xybaView.alpha = 0.5
             
-            self.lButton.alpha = 1
-            self.rButton.alpha = 1
+            self.lButton.alpha = 0.5
+            self.rButton.alpha = 0.5
             
             if self.core == .cytrus {
-                self.zlButton.alpha = 1
-                self.zrButton.alpha = 1
+                self.zlButton.alpha = 0.5
+                self.zrButton.alpha = 0.5
             }
         }
     }

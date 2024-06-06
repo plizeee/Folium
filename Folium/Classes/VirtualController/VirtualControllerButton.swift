@@ -3,6 +3,7 @@
 //  Limon
 //
 //  Created by Jarrod Norwell on 10/18/23.
+//  Edited by Pliz
 //
 
 import Foundation
@@ -10,30 +11,53 @@ import UIKit
 
 class VirtualControllerButton : UIView {
     enum ButtonType : String, Codable {
-        case a = "a", b = "b", x = "x", y = "y"
-        case minus = "minus", plus = "plus"
-        case dpadUp = "arrowtriangle.up", dpadLeft = "arrowtriangle.left", dpadDown = "arrowtriangle.down",
-             dpadRight = "arrowtriangle.right"
-        case l = "l.button.roundedbottom.horizontal", zl = "zl.button.roundedtop.horizontal",
-             r = "r.button.roundedbottom.horizontal", zr = "zr.button.roundedtop.horizontal"
-        
-        var systemName: String {
-            // if [ButtonType.l, ButtonType.zl, ButtonType.r, ButtonType.zr].contains(self) {
-            //     "button.horizontal"
-            // } else {
-            //     "circle"
-            // }
-            
+        case // xyba buttons
+            a = "a.circle", 
+            b = "b.circle", 
+            x = "x.circle", 
+            y = "y.circle"
+        case // menu buttons
+            minus = "minus.circle", 
+            plus = "plus.circle"
+        case // dpad buttons
+            dpadUp = "arrowtriangle.up.circle", 
+            dpadLeft = "arrowtriangle.left.circle", 
+            dpadDown = "arrowtriangle.down.circle",
+            dpadRight = "arrowtriangle.right.circle"
+        case // shoulder buttons
+            l = "l.button.roundedbottom.horizontal", 
+            r = "r.button.roundedbottom.horizontal"
+        case // z buttons
+            zl = "zl.button.roundedtop.horizontal",
+            zr = "zr.button.roundedtop.horizontal"
+        // case // joystick buttons
+        //     ls = "l.joystick.press.down", 
+        //     rs = "r.joystick.press.down"
+        // case // dropdown buttons
+        //     dropdown = "chevron.down.circle",
+        //     general = "gearshape.circle", 
+        //     hide = "eye.circle", 
+        //     special = "star.circle", 
+        //     volume = "speaker.wave.2.circle"
+        // case // general
+        //     pause = "pause.circle", 
+        //     home = "house.circle"
+        // case // special buttons
+        //     turbo = "bolt.circle", 
+        //     toggle = "arrow.down.to.line.circle"
+        // case // hide buttons
+        //     hide_ui = "eye.slash.circle",
+        //     hide_dpad = "l.joystick"
+        // case // volume buttons
+        //     mute = "speaker.slash.circle",
+        //     volDown = "speaker.minus",
+        //     volUp = "speaker.plus"
+        // case // custom buttons
+        //     target = "scope"
+
+        var systemName: String {           
             switch self {
-            case .a, .b, .x, .y, .minus, .plus, .dpadUp, .dpadLeft, .dpadDown, .dpadRight:
-                rawValue.appending(".circle.fill")
-            case .l, .zl, .r, .zr:
-                if #available(iOS 17, *) {
-                    rawValue.appending(".fill")
-                } else {
-                    rawValue.replacingOccurrences(of: "button", with: "rectangle")
-                        .replacingOccurrences(of: "horizontal", with: "fill")
-                }
+                default: return rawValue
             }
         }
     }
