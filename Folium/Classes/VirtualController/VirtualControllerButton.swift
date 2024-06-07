@@ -109,33 +109,22 @@ class VirtualControllerButton : UIView {
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
         
         virtualButtonDelegate.touchDown(buttonType)
-        if buttonType.systemName == "circle"/* || [ButtonType.l, ButtonType.zl, ButtonType.r, ButtonType.zr].contains(buttonType)*/ {
-            guard let image = UIImage(systemName: buttonType.systemName.appending(".fill"))?
-                .applyingSymbolConfiguration(.init(pointSize: pointSize, weight: .regular, scale: .large))?
-                .applyingSymbolConfiguration(colors) else {
-                return
-            }
-            
-            if #available(iOS 17, *) {
-                imageView.setSymbolImage(image, contentTransition: .automatic)
-            }
-        }
+
+        UIView.animate(withDuration: 0.1, delay: 0, options: .allowUserInteraction, animations: {
+                self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                self.imageView.alpha = 1
+        }, completion: nil)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         
         virtualButtonDelegate.touchUpInside(buttonType)
-        if buttonType.systemName == "circle"/* || [ButtonType.l, ButtonType.zl, ButtonType.r, ButtonType.zr].contains(buttonType)*/ {
-            guard let image = UIImage(systemName: buttonType.systemName)?
-                .applyingSymbolConfiguration(.init(pointSize: pointSize, weight: .regular, scale: .large))?
-                .applyingSymbolConfiguration(colors) else {
-                return
-            }
-            
-            if #available(iOS 17, *) {
-                imageView.setSymbolImage(image, contentTransition: .automatic)
-            }
-        }
+
+         UIView.animate(withDuration: 0.1, delay: 0.1, options: .allowUserInteraction, animations: {
+            self.transform = CGAffineTransform.identity
+            self.imageView.alpha = 0.5
+        }, completion: nil)
+        
     }
 }
