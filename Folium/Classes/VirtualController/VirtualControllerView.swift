@@ -85,32 +85,35 @@ class VirtualControllerView : UIView {
             addZL(false, buttonColors: defaultColors)
             addZR(false, buttonColors: defaultColors)
         case .grape:
-            addDpadUp(false, buttonColors: (.systemBackground, .label))
-            addDpadLeft(false, buttonColors: (.systemBackground, .label))
-            addDpadDown(false, buttonColors: (.systemBackground, .label))
-            addDpadRight(false, buttonColors: (.systemBackground, .label))
+            addDpadUp(false, buttonColors: defaultColors)
+            addDpadLeft(false, buttonColors: defaultColors)
+            addDpadDown(false, buttonColors: defaultColors)
+            addDpadRight(false, buttonColors: defaultColors)
             
-            addA(false, buttonColors: (.systemBackground, .label))
-            addB(false, buttonColors: (.systemBackground, .label))
-            addX(false, buttonColors: (.systemBackground, .label))
-            addY(false, buttonColors: (.systemBackground, .label))
+            addA(false, buttonColors: defaultColors)
+            addB(false, buttonColors: defaultColors)
+            addX(false, buttonColors: defaultColors)
+            addY(false, buttonColors: defaultColors)
             
-            addMinus(false, buttonColors: (.systemBackground, .label))
-            addPlus(false, buttonColors: (.systemBackground, .label))
+            addMinus(false, buttonColors: defaultColors)
+            addPlus(false, buttonColors: defaultColors)
             
-            addL(false, buttonColors: (.systemBackground, .label))
-            addR(false, buttonColors: (.systemBackground, .label))
+            addL(false, buttonColors: defaultColors)
+            addR(false, buttonColors: defaultColors)
         case .kiwi:
-            addDpadUp(false, buttonColors: (.systemBackground, .label))
-            addDpadLeft(false, buttonColors: (.systemBackground, .label))
-            addDpadDown(false, buttonColors: (.systemBackground, .label))
-            addDpadRight(false, buttonColors: (.systemBackground, .label))
+            addDpadUp(false, buttonColors: defaultColors)
+            addDpadLeft(false, buttonColors: defaultColors)
+            addDpadDown(false, buttonColors: defaultColors)
+            addDpadRight(false, buttonColors: defaultColors)
+
+            addA(false, buttonColors: defaultColors)
+            addB(false, buttonColors: defaultColors)
             
-            addA(false, buttonColors: core.buttonColors[.a] ?? (.systemRed, .systemGray))
-            addB(false, buttonColors: core.buttonColors[.b] ?? (.systemRed, .systemGray))
+            // addA(false, buttonColors: core.buttonColors[.a] ?? (.systemRed, .systemGray))
+            // addB(false, buttonColors: core.buttonColors[.b] ?? (.systemRed, .systemGray))
             
-            addMinus(false, buttonColors: (.systemBackground, .label))
-            addPlus(false, buttonColors: (.systemBackground, .label))
+            addMinus(false, buttonColors: defaultColors)
+            addPlus(false, buttonColors: defaultColors)
         }
     }
     

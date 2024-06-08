@@ -223,24 +223,24 @@ class EmulationScreensController : EmulationVirtualControllerController {
         view.insertSubview(visualEffectView, belowSubview: primaryScreen)
         
         // TODO: add constraints
-        primaryPortraitTopConstraint = primaryScreen.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10)
-        primaryPortraitLeadingConstraint = primaryScreen.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10)
-        primaryPortraitTrailingConstraint = primaryScreen.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10)
+        primaryPortraitTopConstraint = primaryScreen.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -10) // default 10, higher means lower
+        primaryPortraitLeadingConstraint = primaryScreen.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0) // default 10, higher means to the right
+        primaryPortraitTrailingConstraint = primaryScreen.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0) // default -10, higher means to the right
         primaryPortraitAspectRatioConstraint = primaryScreen.heightAnchor.constraint(equalTo: primaryScreen.widthAnchor, multiplier: 3 / 4)
         
-        primaryLandscapeTopConstraint = primaryScreen.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10)
-        primaryLandscapeBottomConstraint = primaryScreen.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
-        primaryLandscapeCenterXConstraint = primaryScreen.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10)
+        primaryLandscapeTopConstraint = primaryScreen.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0) // default 10, higher means lower
+        primaryLandscapeBottomConstraint = primaryScreen.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 20) // default -10, higher means lower
+        primaryLandscapeCenterXConstraint = primaryScreen.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: -10) // default 10
         primaryLandscapeAspectRatioConstraint = primaryScreen.widthAnchor.constraint(equalTo: primaryScreen.heightAnchor, multiplier: 4 / 3)
         
-        secondaryPortraitTopConstraint = secondaryScreen.topAnchor.constraint(equalTo: primaryScreen.bottomAnchor, constant: 10)
-        secondaryPortraitLeadingConstraint = secondaryScreen.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10)
-        secondaryPortraitTrailingConstraint = secondaryScreen.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10)
+        secondaryPortraitTopConstraint = secondaryScreen.topAnchor.constraint(equalTo: primaryScreen.bottomAnchor, constant: 0) // default 10
+        secondaryPortraitLeadingConstraint = secondaryScreen.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0) // default 10
+        secondaryPortraitTrailingConstraint = secondaryScreen.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0) // default -10
         secondaryPortraitAspectRatioConstraint = secondaryScreen.heightAnchor.constraint(equalTo: secondaryScreen.widthAnchor, multiplier: 3 / 4)
         
-        secondaryLandscapeTopConstraint = secondaryScreen.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10)
-        secondaryLandscapeBottomConstraint = secondaryScreen.leadingAnchor.constraint(equalTo: primaryScreen.trailingAnchor, constant: 10)
-        secondaryLandscapeCenterXConstraint = secondaryScreen.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10)
+        secondaryLandscapeTopConstraint = secondaryScreen.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0) // default 10
+        secondaryLandscapeBottomConstraint = secondaryScreen.leadingAnchor.constraint(equalTo: primaryScreen.trailingAnchor, constant: 0) // default 10
+        secondaryLandscapeCenterXConstraint = secondaryScreen.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 12) // default -10
         secondaryLandscapeAspectRatioConstraint = secondaryScreen.heightAnchor.constraint(equalTo: secondaryScreen.widthAnchor, multiplier: 3 / 4)
         
         toggleConstraints()
