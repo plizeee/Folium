@@ -134,6 +134,21 @@ class VirtualControllerThumbstick : UIView {
         super.layoutSubviews()
         updateMask()
     }
+
+    private func fadeInCircleView() {
+        circleView.isHidden = false
+        UIView.animate(withDuration: 0.2) {
+            self.circleView.alpha = 0.5
+        }
+    }
+
+    private func fadeOutCircleView() {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.circleView.alpha = 0
+        }) { _ in
+            self.circleView.isHidden = true
+        }
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
@@ -150,7 +165,8 @@ class VirtualControllerThumbstick : UIView {
         
         widthConstraint.constant = 50 // Default 20
         heightConstraint.constant = 50 // Default 20
-        circleView.isHidden = false
+        fadeInCircleView()
+        // circleView.isHidden = false
         stickImageView.layoutIfNeeded()
         updateMask()
 
@@ -177,7 +193,8 @@ class VirtualControllerThumbstick : UIView {
         centerYConstraint.constant = 0
         widthConstraint.constant = 0
         heightConstraint.constant = 0
-        circleView.isHidden = true
+        fadeOutCircleView()
+        // circleView.isHidden = true
         stickImageView.layoutIfNeeded()
         updateMask()
 

@@ -16,8 +16,8 @@ struct ScreenConfiguration {
     static var cornerRadius: CGFloat = 13
     
     static func controllerConnected() {
-        borderWidth = 0
-        cornerRadius = 0
+        borderWidth = 13
+        cornerRadius = 13
     }
     
     static func controllerDisconnected() {
@@ -280,9 +280,9 @@ class EmulationScreensController : EmulationVirtualControllerController {
         controllerConnected = true
         ScreenConfiguration.controllerConnected()
         
-        UIView.animate(withDuration: 0.2) {
-            self.primaryScreen.update()
-        }
+        // UIView.animate(withDuration: 0.2) {
+        //     self.primaryScreen.update()
+        // }
     }
     
     override func controllerDidDisconnect(_ notification: Notification) {
@@ -290,9 +290,9 @@ class EmulationScreensController : EmulationVirtualControllerController {
         controllerConnected = false
         ScreenConfiguration.controllerDisconnected()
         
-        UIView.animate(withDuration: 0.2) {
-            self.primaryScreen.update()
-        }
+        // UIView.animate(withDuration: 0.2) {
+        //     self.primaryScreen.update()
+        // }
     }
     
     fileprivate func toggleConstraints() {
