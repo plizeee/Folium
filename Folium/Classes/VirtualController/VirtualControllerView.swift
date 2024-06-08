@@ -449,16 +449,17 @@ class VirtualControllerView : UIView {
     /*=============== FADE/UNFADE ===============*/
 
     func fade() {
+        let minAlpha: CGFloat = 0
         UIView.animate(withDuration: 0.2) {
-            self.dpadView.alpha = 0.33
-            self.xybaView.alpha = 0.33
+            self.dpadView.alpha = minAlpha
+            self.xybaView.alpha = minAlpha
             
-            self.lButton.alpha = 0.33
-            self.rButton.alpha = 0.33
+            self.lButton.alpha = minAlpha
+            self.rButton.alpha = minAlpha
             
             if self.core == .cytrus {
-                self.zlButton.alpha = 0.33
-                self.zrButton.alpha = 0.33
+                self.zlButton.alpha = minAlpha
+                self.zrButton.alpha = minAlpha
             }
         }
     }
