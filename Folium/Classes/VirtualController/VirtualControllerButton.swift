@@ -88,7 +88,7 @@ class VirtualControllerButton : UIView {
             .applyingSymbolConfiguration(.init(pointSize: pointSize, weight: .regular, scale: .large))?
             .applyingSymbolConfiguration(colors))
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.alpha = shouldHide ? 0 : 1
+        imageView.alpha = shouldHide ? 0 : 0.5
         imageView.isUserInteractionEnabled = shouldHide ? false : true
         imageView.contentMode = .scaleAspectFill
         addSubview(imageView)
@@ -109,10 +109,12 @@ class VirtualControllerButton : UIView {
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
         
         virtualButtonDelegate.touchDown(buttonType)
+        
+        self.imageView.alpha = 1
 
         UIView.animate(withDuration: 0.1, delay: 0, options: .allowUserInteraction, animations: {
-                self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-                self.imageView.alpha = 1
+            self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+            
         }, completion: nil)
     }
     

@@ -23,6 +23,7 @@ class VirtualControllerThumbstick : UIView {
     
     var thumbstickType: ThumbstickType
     var virtualThumbstickDelegate: VirtualControllerThumbstickDelegate
+    weak var parentView: VirtualControllerView?
 
     static let defaultConfiguration = UIImage.SymbolConfiguration(
         pointSize: 0, 
@@ -36,9 +37,10 @@ class VirtualControllerThumbstick : UIView {
         scale: .default
     )
 
-    init(_ core: Core, _ thumbstickType: ThumbstickType, _ virtualThumbstickDelegate: VirtualControllerThumbstickDelegate) {
+    init(_ core: Core, _ thumbstickType: ThumbstickType, _ virtualThumbstickDelegate: VirtualControllerThumbstickDelegate, parentView: VirtualControllerView) {
         self.thumbstickType = thumbstickType
         self.virtualThumbstickDelegate = virtualThumbstickDelegate
+        self.parentView = parentView
         super.init(frame: .zero)
         isUserInteractionEnabled = true
         
@@ -151,6 +153,12 @@ class VirtualControllerThumbstick : UIView {
         circleView.isHidden = false
         stickImageView.layoutIfNeeded()
         updateMask()
+
+        if thumbstickType == .thumbstickLeft {
+            parentView?.fadeDpadView()
+        } else {
+            parentView?.fadeXYBAView()
+        }
         
         virtualThumbstickDelegate.touchDown(thumbstickType, position(in: self, with: touch.location(in: self)))
     }
@@ -172,6 +180,12 @@ class VirtualControllerThumbstick : UIView {
         circleView.isHidden = true
         stickImageView.layoutIfNeeded()
         updateMask()
+
+        if thumbstickType == .thumbstickLeft {
+            parentView?.unfadeDpadView()
+        } else {
+            parentView?.unfadeXYBAView()
+        }
         
         virtualThumbstickDelegate.touchUpInside(thumbstickType, (0, 0))
     }

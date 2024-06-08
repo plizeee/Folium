@@ -234,7 +234,7 @@ class VirtualControllerView : UIView {
     }
     
     fileprivate func addLThumbstickView() {
-        leftThumbstickView = .init(core, .thumbstickLeft, virtualThumbstickDelegate)
+        leftThumbstickView = .init(core, .thumbstickLeft, virtualThumbstickDelegate, parentView: self)
         leftThumbstickView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(leftThumbstickView)
         
@@ -254,7 +254,7 @@ class VirtualControllerView : UIView {
     }
     
     fileprivate func addRThumbstickView() {
-        rightThumbstickView = .init(core, .thumbstickRight, virtualThumbstickDelegate)
+        rightThumbstickView = .init(core, .thumbstickRight, virtualThumbstickDelegate, parentView: self)
         rightThumbstickView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(rightThumbstickView)
         
@@ -398,7 +398,8 @@ class VirtualControllerView : UIView {
 
     fileprivate func addL(_ shouldHide: Bool, buttonColors: (UIColor, UIColor)) {
         lButton = .init(buttonColors: buttonColors, buttonType: .l, virtualButtonDelegate: virtualButtonDelegate, shouldHide: shouldHide)
-        addSubview(lButton)
+        // addSubview(lButton)
+        xybaView.addSubview(lButton)
         
         addConstraints([
             lButton.leadingAnchor.constraint(equalTo: xybaView.leadingAnchor, constant: -10),
@@ -410,7 +411,7 @@ class VirtualControllerView : UIView {
 
     fileprivate func addZL(_ shouldHide: Bool, buttonColors: (UIColor, UIColor)) {
         zlButton = .init(buttonColors: buttonColors, buttonType: .zl, virtualButtonDelegate: virtualButtonDelegate, shouldHide: shouldHide)
-        addSubview(zlButton)
+        dpadView.addSubview(zlButton)
         
         addConstraints([
             zlButton.leadingAnchor.constraint(equalTo: dpadView.leadingAnchor, constant: -10),
@@ -423,7 +424,7 @@ class VirtualControllerView : UIView {
 
     fileprivate func addR(_ shouldHide: Bool, buttonColors: (UIColor, UIColor)) {
         rButton = .init(buttonColors: buttonColors, buttonType: .r, virtualButtonDelegate: virtualButtonDelegate, shouldHide: shouldHide)
-        addSubview(rButton)
+        xybaView.addSubview(rButton)
         
         addConstraints([
             rButton.leadingAnchor.constraint(equalTo: xybaView.centerXAnchor, constant: 30), // Default 10
@@ -435,7 +436,7 @@ class VirtualControllerView : UIView {
 
     fileprivate func addZR(_ shouldHide: Bool, buttonColors: (UIColor, UIColor)) {
         zrButton = .init(buttonColors: buttonColors, buttonType: .zr, virtualButtonDelegate: virtualButtonDelegate, shouldHide: shouldHide)
-        addSubview(zrButton)
+        dpadView.addSubview(zrButton)
         
         addConstraints([
             zrButton.leadingAnchor.constraint(equalTo: dpadView.centerXAnchor, constant: 30), // Default 10
@@ -447,19 +448,20 @@ class VirtualControllerView : UIView {
     
 
     /*=============== FADE/UNFADE ===============*/
+    let minAlpha: CGFloat = 0
+    let maxAlpha: CGFloat = 1
 
     func fade() {
-        let minAlpha: CGFloat = 0
         UIView.animate(withDuration: 0.2) {
-            self.dpadView.alpha = minAlpha
-            self.xybaView.alpha = minAlpha
+            self.dpadView.alpha = self.minAlpha
+            self.xybaView.alpha = self.minAlpha
             
-            self.lButton.alpha = minAlpha
-            self.rButton.alpha = minAlpha
+            self.lButton.alpha = self.minAlpha
+            self.rButton.alpha = self.minAlpha
             
             if self.core == .cytrus {
-                self.zlButton.alpha = minAlpha
-                self.zrButton.alpha = minAlpha
+                self.zlButton.alpha = self.minAlpha
+                self.zrButton.alpha = self.minAlpha
             }
         }
     }
@@ -476,6 +478,34 @@ class VirtualControllerView : UIView {
                 self.zlButton.alpha = 0.5
                 self.zrButton.alpha = 0.5
             }
+        }
+    }
+
+    func fadeDpadView() {
+//        let minAlpha: CGFloat = 0
+        UIView.animate(withDuration: 0.3) {
+            self.dpadView.alpha = self.minAlpha
+        }
+    }
+
+    func unfadeDpadView() {
+        // let maxAlpha: CGFloat = 0.5
+        UIView.animate(withDuration: 0.3) {
+            self.dpadView.alpha = self.maxAlpha
+        }
+    }
+
+    func fadeXYBAView() {
+        // let minAlpha: CGFloat = 0
+        UIView.animate(withDuration: 0.3) {
+            self.xybaView.alpha = self.minAlpha
+        }
+    }
+
+    func unfadeXYBAView() {
+        // let maxAlpha: CGFloat = 0.5
+        UIView.animate(withDuration: 0.3) {
+            self.xybaView.alpha = self.maxAlpha
         }
     }
 }
