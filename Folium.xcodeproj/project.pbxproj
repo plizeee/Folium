@@ -3441,9 +3441,10 @@
 				CODE_SIGN_ENTITLEMENTS = Folium/Folium.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = Z3ZEABYY6P;
+				DEVELOPMENT_TEAM = 9JJ3N747XC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Folium/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Folium-Custom";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Folium uses your devices microphone to send audio input to emulator cores that make use of it";
@@ -3457,7 +3458,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.2;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.antique.Folium-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pliz.Folium-Custom";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -3477,9 +3478,10 @@
 				CODE_SIGN_ENTITLEMENTS = Folium/Folium.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = Z3ZEABYY6P;
+				DEVELOPMENT_TEAM = 9JJ3N747XC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Folium/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Folium-Custom";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Folium uses your devices microphone to send audio input to emulator cores that make use of it";
@@ -3493,7 +3495,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.2;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.antique.Folium-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pliz.Folium-Custom";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
